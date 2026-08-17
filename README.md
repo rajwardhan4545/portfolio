@@ -1,5 +1,5 @@
 <h1 align="center">
-  <a href="https://rajwardhan-patil.vercel.app">
+  <a href="https://rajwardhan4545.github.io/portfolio/">
     <img src="assets/images/avatar.jpg" width="100" height="100" style="border-radius: 50%;" alt="Rajwardhan Patil"/>
   </a>
   <br/>
@@ -11,7 +11,7 @@
 </p>
 
 <p align="center">
-  <a href="https://rajwardhan-patil.vercel.app"><img src="https://img.shields.io/badge/🌐 Live Demo-Visit Portfolio-00f2fe?style=for-the-badge&logoColor=white" alt="Live Demo"/></a>
+  <a href="https://rajwardhan4545.github.io/portfolio/"><img src="https://img.shields.io/badge/🌐 Live Demo-Visit Portfolio-00f2fe?style=for-the-badge&logoColor=white" alt="Live Demo"/></a>
   &nbsp;
   <a href="mailto:rajwardhanpatil2003@gmail.com"><img src="https://img.shields.io/badge/📧 Email-Contact Me-a855f7?style=for-the-badge" alt="Email"/></a>
   &nbsp;
