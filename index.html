@@ -1,0 +1,988 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Portfolio of Rajwardhan Patil — Software Developer at Raja Software Labs building scalable Server-Driven UI and high-performance software applications across Web, Android, and iOS.">
+    <meta name="keywords" content="Rajwardhan Patil, Software Developer, Software Engineer, Full Stack Developer, Raja Software Labs, NITK, Server Driven UI, Kotlin, Java">
+    <meta name="author" content="Rajwardhan Patil">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Rajwardhan Patil — Software Developer">
+    <meta property="og:description" content="Software Developer building high-performance Server-Driven UI and scalable web & mobile systems.">
+    <meta property="og:type" content="website">
+
+    <title>Rajwardhan Patil — Software Developer</title>
+
+    <!-- Google Fonts: Inter & JetBrains Mono + Plus Jakarta Sans for energy -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Top Scroll Progress Bar -->
+    <div class="scroll-progress" id="scrollProgress"></div>
+
+    <!-- Ambient Cursor Glow Spotlight -->
+    <div class="cursor-glow" id="cursorGlow"></div>
+
+    <!-- Global Animated Background -->
+    <canvas class="bg-canvas" id="bgCanvas"></canvas>
+    <div class="bg-orbs">
+        <div class="bg-orb bg-orb-1"></div>
+        <div class="bg-orb bg-orb-2"></div>
+        <div class="bg-orb bg-orb-3"></div>
+        <div class="bg-orb bg-orb-4"></div>
+        <div class="bg-orb bg-orb-5"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="nav" id="nav">
+        <div class="nav-inner">
+            <a href="#hero" class="nav-logo">
+                <span class="logo-text">RP</span>
+                <span class="logo-dot"></span>
+            </a>
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+                <span class="hamburger"></span>
+            </button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#about">About</a></li>
+                <li><a href="#code-showcase">Code</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#contact" class="nav-cta">Get In Touch</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <canvas id="heroCanvas" class="hero-canvas"></canvas>
+        <div class="hero-bg-shapes">
+            <div class="shape shape-1"></div>
+            <div class="shape shape-2"></div>
+            <div class="shape shape-3"></div>
+        </div>
+        <div class="hero-content">
+            <div class="hero-badge animate-on-scroll">
+                <span class="pulse-indicator">
+                    <span class="pulse-dot"></span>
+                    <span class="pulse-ring"></span>
+                </span>
+                <span>Software Developer &amp; Problem Solver</span>
+            </div>
+            <h1 class="hero-title animate-on-scroll">
+                <span class="hero-greeting">Hello, I'm</span>
+                <span class="hero-name">Rajwardhan Patil</span>
+                <span class="hero-role">
+                    <span class="typed-text" id="typedText"></span>
+                    <span class="cursor">|</span>
+                </span>
+            </h1>
+            <p class="hero-desc animate-on-scroll">
+                Software Developer at <strong>Raja Software Labs</strong>, building production-ready 
+                Server-Driven UI components for enterprise applications. Passionate about engineering 
+                high-performance systems with clean architecture and delightful user experiences.
+            </p>
+            <div class="hero-actions animate-on-scroll">
+                <a href="#projects" class="btn btn-primary">
+                    <span>Explore Projects</span>
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+                <a href="#contact" class="btn btn-outline">
+                    <span>Let's Connect</span>
+                </a>
+            </div>
+            <div class="hero-highlights animate-on-scroll">
+                <div class="hero-chip"><i class="fas fa-bolt"></i> <span>Server-Driven UI</span></div>
+                <div class="hero-chip"><i class="fas fa-layer-group"></i> <span>Full-Stack Systems</span></div>
+                <div class="hero-chip"><i class="fas fa-code-branch"></i> <span>5+ Active Projects</span></div>
+            </div>
+            <div class="hero-socials animate-on-scroll">
+                <a href="https://github.com/rajwardhan4545" target="_blank" rel="noopener" aria-label="GitHub">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/rajwardhan4545" target="_blank" rel="noopener" aria-label="LinkedIn">
+                    <i class="fab fa-linkedin-in"></i>
+                </a>
+                <a href="mailto:rajwardhanpatil2003@gmail.com" aria-label="Email">
+                    <i class="fas fa-envelope"></i>
+                </a>
+                <a href="tel:+919673454532" aria-label="Phone">
+                    <i class="fas fa-phone"></i>
+                </a>
+            </div>
+        </div>
+        <div class="hero-scroll-indicator">
+            <span>Scroll Down</span>
+            <div class="scroll-arrow"><i class="fas fa-chevron-down"></i></div>
+        </div>
+    </section>
+
+    <!-- ── Infinity Tech Logo Marquee (Adrian-style) ── -->
+    <div class="marquee-section">
+        <div class="marquee-gradient-left"></div>
+        <div class="marquee-gradient-right"></div>
+        <div class="marquee-track" id="marqueeTrack">
+            <div class="marquee-inner" id="marqueeInner">
+                <div class="marquee-item"><img src="assets/logos/kotlin.svg" alt="Kotlin"><span>Kotlin</span></div>
+                <div class="marquee-item"><img src="assets/logos/java.svg" alt="Java"><span>Java</span></div>
+                <div class="marquee-item"><img src="assets/logos/spring.svg" alt="Spring Boot"><span>Spring Boot</span></div>
+                <div class="marquee-item"><img src="assets/logos/react.svg" alt="React"><span>React</span></div>
+                <div class="marquee-item"><img src="assets/logos/android.svg" alt="Android"><span>Android</span></div>
+                <div class="marquee-item"><img src="assets/logos/python.svg" alt="Python"><span>Python</span></div>
+                <div class="marquee-item"><img src="assets/logos/nodejs.svg" alt="Node.js"><span>Node.js</span></div>
+                <div class="marquee-item"><img src="assets/logos/docker.svg" alt="Docker"><span>Docker</span></div>
+                <div class="marquee-item"><img src="assets/logos/mysql.svg" alt="MySQL"><span>MySQL</span></div>
+                <div class="marquee-item"><img src="assets/logos/javascript.svg" alt="JavaScript"><span>JavaScript</span></div>
+                <div class="marquee-item"><img src="assets/logos/git.svg" alt="Git"><span>Git</span></div>
+                <div class="marquee-item"><img src="assets/logos/dot-net.svg" alt=".NET"><span>.NET</span></div>
+                <!-- Duplicate for seamless loop -->
+                <div class="marquee-item"><img src="assets/logos/kotlin.svg" alt="Kotlin"><span>Kotlin</span></div>
+                <div class="marquee-item"><img src="assets/logos/java.svg" alt="Java"><span>Java</span></div>
+                <div class="marquee-item"><img src="assets/logos/spring.svg" alt="Spring Boot"><span>Spring Boot</span></div>
+                <div class="marquee-item"><img src="assets/logos/react.svg" alt="React"><span>React</span></div>
+                <div class="marquee-item"><img src="assets/logos/android.svg" alt="Android"><span>Android</span></div>
+                <div class="marquee-item"><img src="assets/logos/python.svg" alt="Python"><span>Python</span></div>
+                <div class="marquee-item"><img src="assets/logos/nodejs.svg" alt="Node.js"><span>Node.js</span></div>
+                <div class="marquee-item"><img src="assets/logos/docker.svg" alt="Docker"><span>Docker</span></div>
+                <div class="marquee-item"><img src="assets/logos/mysql.svg" alt="MySQL"><span>MySQL</span></div>
+                <div class="marquee-item"><img src="assets/logos/javascript.svg" alt="JavaScript"><span>JavaScript</span></div>
+                <div class="marquee-item"><img src="assets/logos/git.svg" alt="Git"><span>Git</span></div>
+                <div class="marquee-item"><img src="assets/logos/dot-net.svg" alt=".NET"><span>.NET</span></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ── Animated Stat Counters (Adrian-style) ── -->
+    <div class="stats-strip">
+        <div class="stats-inner">
+            <div class="stat-item">
+                <span class="stat-number" data-target="5" data-suffix="+">0</span>
+                <span class="stat-label">GitHub Projects</span>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat-item">
+                <span class="stat-number" data-target="2" data-suffix="yrs">0</span>
+                <span class="stat-label">Industry Experience</span>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat-item">
+                <span class="stat-number" data-target="3" data-suffix="x">0</span>
+                <span class="stat-label">Cross-Platform Apps</span>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat-item">
+                <span class="stat-number" data-target="84" data-suffix="%">0</span>
+                <span class="stat-label">C-DAC Score</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Creative Code & Terminal Showcase Section -->
+    <section class="section code-showcase" id="code-showcase">
+        <div class="aurora-beam"></div>
+        <div class="aurora-beam" style="animation-delay: 3.5s; top: 40%; background: linear-gradient(90deg, transparent, rgba(168,85,247,0.7), rgba(236,72,153,0.5), transparent);"></div>
+        <div class="container">
+            <div class="section-header animate-on-scroll">
+                <span class="section-tag">01 // CODE &amp; MINDSET</span>
+                <h2 class="section-title">Developer Blueprint &amp; Playground</h2>
+                <div class="section-line"></div>
+                
+                <div class="quote-statement-wrap animate-on-scroll">
+                    <div class="quote-statement-pill">
+                        <span class="quote-icon"><i class="fas fa-terminal"></i></span>
+                        <p class="quote-text">
+                            <span class="quote-highlight">"Make it work. Make it right. Make it fast."</span> — Turning complex challenges into clean, resilient, and scalable software.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="code-editor-wrap animate-on-scroll">
+                <div class="code-editor-window">
+                    <div class="editor-header">
+                        <div class="editor-controls">
+                            <span class="dot dot-red"></span>
+                            <span class="dot dot-yellow"></span>
+                            <span class="dot dot-green"></span>
+                        </div>
+                        <div class="editor-tabs" id="editorTabs">
+                            <button class="editor-tab active" data-tab="config">
+                                <i class="fas fa-file-code tab-icon-fa" style="color: #38bdf8;"></i>
+                                <span>Developer.ts</span>
+                            </button>
+                            <button class="editor-tab" data-tab="terminal">
+                                <i class="fas fa-terminal tab-icon-fa" style="color: #10b981;"></i>
+                                <span>Interactive_CLI.sh</span>
+                            </button>
+                            <button class="editor-tab" data-tab="sdui">
+                                <i class="fas fa-bolt tab-icon-fa" style="color: #a855f7;"></i>
+                                <span>DailyLoop.kt</span>
+                            </button>
+                            <button class="editor-tab" data-tab="mindset">
+                                <i class="fas fa-cubes tab-icon-fa" style="color: #fbbf24;"></i>
+                                <span>Mindset.java</span>
+                            </button>
+                        </div>
+                        <button class="copy-code-btn" id="copyCodeBtn" title="Copy code snippet">
+                            <i class="far fa-copy"></i>
+                            <span>Copy</span>
+                        </button>
+                    </div>
+
+                    <!-- Tab Contents -->
+                    <div class="editor-body">
+                        <!-- Developer Profile Snippet -->
+                        <div class="code-pane active" id="pane-config">
+<pre><code><span class="token-comment">// "Make it work. Make it right. Make it fast."</span>
+<span class="token-keyword">const</span> rajwardhan = {
+    name: <span class="token-string">"Rajwardhan Patil"</span>,
+    role: <span class="token-string">"Software Developer"</span>,
+    philosophy: <span class="token-string">"Make it work. Make it right. Make it fast. 🚀"</span>,
+    coreSkills: [<span class="token-string">"Kotlin"</span>, <span class="token-string">"Java"</span>, <span class="token-string">"Spring Boot"</span>, <span class="token-string">"React"</span>, <span class="token-string">"SDUI"</span>],
+    fuel: [<span class="token-string">"Coffee ☕"</span>, <span class="token-string">"Curiosity 💡"</span>],
+
+    <span class="token-function">engineerSolution</span>: (problem) =&gt; {
+        <span class="token-keyword">return</span> problem
+            .<span class="token-function">makeItWork</span>()
+            .<span class="token-function">makeItRight</span>()
+            .<span class="token-function">makeItFast</span>()
+            .<span class="token-function">deployCrossPlatform</span>([<span class="token-string">"Web"</span>, <span class="token-string">"Android"</span>, <span class="token-string">"iOS"</span>]);
+    }
+};</code></pre>
+                        </div>
+
+                        <!-- Interactive Terminal Snippet -->
+                        <div class="code-pane" id="pane-terminal">
+                            <div class="terminal-container">
+                                <div class="terminal-quick-actions">
+                                    <span>Quick Commands:</span>
+                                    <button class="cli-cmd-btn" data-cmd="whoami">whoami</button>
+                                    <button class="cli-cmd-btn" data-cmd="skills">skills</button>
+                                    <button class="cli-cmd-btn" data-cmd="experience">experience</button>
+                                    <button class="cli-cmd-btn" data-cmd="contact">contact</button>
+                                    <button class="cli-cmd-btn" data-cmd="coffee">coffee ☕</button>
+                                    <button class="cli-cmd-btn" data-cmd="clear">clear</button>
+                                </div>
+                                <div class="terminal-output" id="terminalOutput">
+                                    <div class="terminal-line"><span class="t-prompt">guest@rajwardhan-dev:~$</span> <span class="t-welcome">Welcome to Rajwardhan's Interactive Terminal!</span></div>
+                                    <div class="terminal-line"><span class="t-comment">Click any button above or type a command to explore.</span></div>
+                                </div>
+                                <div class="terminal-input-row">
+                                    <span class="t-prompt">guest@rajwardhan-dev:~$</span>
+                                    <input type="text" id="terminalInput" placeholder="try 'whoami', 'skills', 'coffee'..." autocomplete="off" spellcheck="false">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Kotlin SDUI Snippet -->
+                        <div class="code-pane" id="pane-sdui">
+<pre><code><span class="token-comment">// The Server-Driven UI Engineering Loop</span>
+<span class="token-keyword">fun</span> <span class="token-function">buildExperience</span>() = lifecycleScope.<span class="token-function">launch</span> {
+    <span class="token-keyword">while</span> (active) {
+        <span class="token-keyword">val</span> feature = clientTeam.<span class="token-function">getFeatureRequest</span>()
+        <span class="token-keyword">val</span> sduiComponent = <span class="token-function">renderCrossPlatform</span>(feature)
+        
+        sduiComponent.<span class="token-function">deploy</span>(target = <span class="token-string">"Web • Android • iOS"</span>)
+        <span class="token-function">println</span>(<span class="token-string">"✨ Seamless, Native Server-Driven UI Shipped!"</span>)
+    }
+}</code></pre>
+                        </div>
+
+                        <!-- Mindset Snippet -->
+                        <div class="code-pane" id="pane-mindset">
+<pre><code><span class="token-comment">// Core Engineering Philosophy</span>
+<span class="token-keyword">public class</span> <span class="token-class">EngineeringMindset</span> {
+    <span class="token-keyword">public static void</span> <span class="token-function">main</span>(<span class="token-type">String</span>[] args) {
+        System.out.<span class="token-function">println</span>(<span class="token-string">"1. Make it work."</span>);
+        System.out.<span class="token-function">println</span>(<span class="token-string">"2. Make it right."</span>);
+        System.out.<span class="token-function">println</span>(<span class="token-string">"3. Make it fast."</span>);
+        System.out.<span class="token-function">println</span>(<span class="token-string">"🚀 Ready for millions of users."</span>);
+    }
+}</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="editor-footer">
+                        <div class="editor-status">
+                            <span class="status-indicator"></span>
+                            <span>Simple • Creative • Clean Code</span>
+                        </div>
+                        <div class="editor-lang-tag">
+                            <i class="fas fa-code"></i>
+                            <span id="activeLangName">Developer.ts</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="section about" id="about">
+        <div class="container">
+            <div class="section-header animate-on-scroll">
+                <span class="section-tag">02</span>
+                <h2 class="section-title">About Me</h2>
+                <div class="section-line"></div>
+            </div>
+            <div class="about-grid">
+                <div class="about-text animate-on-scroll">
+                    <p class="about-lead">
+                        An NIT Karnataka, Surathkal graduate with a B.Tech in Electronics &amp; Communication 
+                        Engineering, now building impactful software at scale.
+                    </p>
+                    <p>
+                        I currently work at <strong>Raja Software Labs</strong> where I collaborate directly 
+                        with client engineering teams to develop and maintain scalable Server-Driven UI 
+                        components using Kotlin. My work spans Web, Android, and iOS platforms through 
+                        SDUI architecture.
+                    </p>
+                    <p>
+                        With a Post Graduate Diploma in Advanced Computing from <strong>C-DAC</strong> (84.6%) 
+                        and hands-on experience across the full stack — from Spring Boot microservices to 
+                        React frontends — I bring a strong foundation in software engineering, clean code 
+                        practices, and cross-platform development.
+                    </p>
+
+                    <!-- Developer Workspace Banner Card -->
+                    <div class="dev-banner-card">
+                        <img src="assets/images/dev-workspace.jpg" alt="Developer Workspace" class="dev-banner-img">
+                        <div class="dev-banner-overlay">
+                            <div class="dev-banner-badge">
+                                <span class="pulse-dot"></span>
+                                <span>Continuous Integration &amp; Clean Architecture</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="about-stats">
+                        <div class="stat-item">
+                            <span class="stat-number" data-target="6">0</span>
+                            <span class="stat-suffix">+</span>
+                            <span class="stat-label">Months Professional Experience</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number" data-target="5">0</span>
+                            <span class="stat-suffix">+</span>
+                            <span class="stat-label">Projects Delivered</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number" data-target="3">0</span>
+                            <span class="stat-suffix"></span>
+                            <span class="stat-label">Platforms (Web, Android, iOS)</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-highlights animate-on-scroll">
+                    <div class="about-avatar-card">
+                        <div class="avatar-glow-ring">
+                            <img src="assets/images/avatar.jpg" alt="Rajwardhan Patil" class="about-avatar-img">
+                        </div>
+                        <div class="avatar-details">
+                            <h4>Rajwardhan Patil</h4>
+                            <p><span class="badge-dot"></span> Active Software Developer</p>
+                        </div>
+                    </div>
+                    <div class="highlight-card">
+                        <div class="highlight-icon"><i class="fas fa-briefcase"></i></div>
+                        <div>
+                            <h4>Currently Working On</h4>
+                            <p>Profile Module — Server-Driven UI with Kotlin at Raja Software Labs</p>
+                        </div>
+                    </div>
+                    <div class="highlight-card">
+                        <div class="highlight-icon"><i class="fas fa-graduation-cap"></i></div>
+                        <div>
+                            <h4>Education</h4>
+                            <p>B.Tech from NIT Karnataka, Surathkal + PG-DAC from C-DAC</p>
+                        </div>
+                    </div>
+                    <div class="highlight-card">
+                        <div class="highlight-icon"><i class="fas fa-certificate"></i></div>
+                        <div>
+                            <h4>Post-Graduate Diploma</h4>
+                            <p>PG-DAC from C-DAC with 84.6% — Advanced Computing specialization</p>
+                        </div>
+                    </div>
+                    <div class="highlight-card">
+                        <div class="highlight-icon"><i class="fas fa-laptop-code"></i></div>
+                        <div>
+                            <h4>Developer Focus</h4>
+                            <p>Cross-platform SDUI, microservices, clean code &amp; system design</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section class="section experience" id="experience">
+        <div class="container">
+            <div class="section-header animate-on-scroll">
+                <span class="section-tag">03</span>
+                <h2 class="section-title">Experience</h2>
+                <div class="section-line"></div>
+            </div>
+
+            <div class="timeline">
+                <!-- Work Experience -->
+                <div class="timeline-item animate-on-scroll">
+                    <div class="timeline-marker">
+                        <div class="timeline-dot current"></div>
+                    </div>
+                    <div class="timeline-content">
+                        <div class="timeline-header">
+                            <div>
+                                <span class="timeline-badge">Full-Time</span>
+                                <h3 class="timeline-title">Software Engineer</h3>
+                                <p class="timeline-company">
+                                    <i class="fas fa-building"></i>
+                                    Raja Software Labs
+                                    <span class="timeline-separator">•</span>
+                                    <span class="timeline-project">Server Driven UI</span>
+                                </p>
+                            </div>
+                            <span class="timeline-date">
+                                <i class="far fa-calendar-alt"></i>
+                                Feb 2026 — Present
+                            </span>
+                        </div>
+                        <div class="timeline-tags">
+                            <span class="tag">SDUI</span>
+                            <span class="tag">Kotlin</span>
+                            <span class="tag">Git</span>
+                            <span class="tag">Accessibility</span>
+                            <span class="tag">Android Development</span>
+                            <span class="tag">Server Driven UI</span>
+                        </div>
+                        <ul class="timeline-details">
+                            <li>Collaborated directly with client engineering teams to deliver production-ready code, utilizing GitHub version control.</li>
+                            <li>Refined code quality by leveraging AI tools during peer reviews and executing secure production merges.</li>
+                            <li>Developed and maintained scalable Server-Driven UI (SDUI) components using Kotlin for the client's Profile module.</li>
+                            <li>Delivered accessibility improvements by resolving complex UI constraints to ensure an inclusive user experience.</li>
+                            <li>Implemented cross-platform features via SDUI architecture to seamlessly update Web, Android, and iOS applications.</li>
+                            <li>Applied comprehensive native Android training to troubleshoot platform-specific issues and deploy reliable fixes.</li>
+                            <li>Consolidated team-wide development data, tracking investigated issues and component updates to deliver client reports.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Internship -->
+                <div class="timeline-item animate-on-scroll">
+                    <div class="timeline-marker">
+                        <div class="timeline-dot"></div>
+                    </div>
+                    <div class="timeline-content">
+                        <div class="timeline-header">
+                            <div>
+                                <span class="timeline-badge internship">Internship</span>
+                                <h3 class="timeline-title">IoT & Embedded Systems Intern</h3>
+                                <p class="timeline-company">
+                                    <i class="fas fa-building"></i>
+                                    Earth LogicWare Technologies
+                                    <span class="timeline-separator">•</span>
+                                    <span class="timeline-project">Embedded Environmental IoT System</span>
+                                </p>
+                            </div>
+                            <span class="timeline-date">
+                                <i class="far fa-calendar-alt"></i>
+                                Apr 2024 — Jun 2024
+                            </span>
+                        </div>
+                        <div class="timeline-tags">
+                            <span class="tag">ESP32</span>
+                            <span class="tag">IoT</span>
+                            <span class="tag">Wireless Sensor Networks</span>
+                            <span class="tag">Cloud Monitoring</span>
+                        </div>
+                        <ul class="timeline-details">
+                            <li>Programmed ESP32 microcontrollers and integrated sensors with supporting circuits for real-time data collection.</li>
+                            <li>Implemented robust cloud-based monitoring and automation workflows to enable seamless remote data visualization, trigger real-time system alerts, and ensure highly reliable IoT operations across the wireless sensor network.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="section projects" id="projects">
+        <div class="container">
+            <div class="section-header animate-on-scroll">
+                <span class="section-tag">03</span>
+                <h2 class="section-title">Featured Projects</h2>
+                <div class="section-line"></div>
+            </div>
+
+            <!-- Interactive Project Filter Tabs -->
+            <div class="project-filters animate-on-scroll" id="projectFilters">
+                <button class="filter-btn active" data-filter="all">
+                    <i class="fas fa-th-large"></i> All (<span class="filter-count">5</span>)
+                </button>
+                <button class="filter-btn" data-filter="fullstack">
+                    <i class="fas fa-layer-group"></i> Full-Stack &amp; Web
+                </button>
+                <button class="filter-btn" data-filter="ai">
+                    <i class="fas fa-robot"></i> AI &amp; Automation
+                </button>
+                <button class="filter-btn" data-filter="research">
+                    <i class="fas fa-atom"></i> Research &amp; Sensors
+                </button>
+            </div>
+
+            <div class="projects-grid" id="projectsGrid">
+                <!-- E-Tour Project -->
+                <div class="project-card animate-on-scroll" data-category="fullstack">
+                    <div class="project-image">
+                        <img src="assets/images/img-etour.jpg" alt="E-Tour Project" loading="lazy">
+                        <div class="project-overlay">
+                            <a href="https://github.com/rajwardhan4545/ETOUR-VirtueGO" target="_blank" rel="noopener" class="project-link" aria-label="E-Tour GitHub Repo">
+                                <i class="fab fa-github"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="project-body">
+                        <div class="project-meta">
+                            <span class="project-date">Dec 2025 — Jan 2026</span>
+                        </div>
+                        <h3 class="project-title">E-Tour — Tour Booking System</h3>
+                        <p class="project-desc">
+                            A full-stack B2C group tour booking application with REST APIs to manage itineraries, 
+                            pricing, and passenger details. Features JWT-secured Spring Boot backend with JPA 
+                            persistence and a React frontend.
+                        </p>
+                        <ul class="project-features">
+                            <li>Built REST APIs using Spring Boot 3 with JPA persistence and JWT authentication for secure access.</li>
+                            <li>Designed a normalized MySQL 8 database schema for optimized querying.</li>
+                            <li>Dockerized services for consistent deployment and environment portability.</li>
+                            <li>Implemented selected modules in .NET Core Web API for multi-platform comparison.</li>
+                        </ul>
+                        <div class="project-tech">
+                            <span><img src="assets/logos/spring.svg" alt="Spring" class="tech-tag-icon"> Spring Boot</span>
+                            <span><img src="assets/logos/react.svg" alt="React" class="tech-tag-icon"> React JS</span>
+                            <span><img src="assets/logos/mysql.svg" alt="MySQL" class="tech-tag-icon"> MySQL</span>
+                            <span><img src="assets/logos/docker.svg" alt="Docker" class="tech-tag-icon"> Docker</span>
+                            <span><img src="assets/logos/dot-net.svg" alt=".NET" class="tech-tag-icon"> .NET Core</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- NewsMela Project -->
+                <div class="project-card animate-on-scroll" data-category="fullstack">
+                    <div class="project-image">
+                        <img src="assets/images/img-newsmela.jpg" alt="NewsMela Project" loading="lazy">
+                        <div class="project-overlay">
+                            <a href="https://github.com/rajwardhan4545/NewsMela" target="_blank" rel="noopener" class="project-link" aria-label="NewsMela GitHub Repo">
+                                <i class="fab fa-github"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="project-body">
+                        <div class="project-meta">
+                            <span class="project-date">Nov 2025 — Dec 2025</span>
+                        </div>
+                        <h3 class="project-title">NewsMela — News Aggregation Platform</h3>
+                        <p class="project-desc">
+                            A dynamic news aggregation platform with real-time updates, category filtering, 
+                            live weather, and currency converter — all powered by multiple APIs with 
+                            optimized performance.
+                        </p>
+                        <ul class="project-features">
+                            <li>Real-time news updates with category filtering and search functionality.</li>
+                            <li>Optimized frontend with lazy loading and API caching — 40% faster data fetching.</li>
+                            <li>Dark mode, mobile-first responsive design across all devices.</li>
+                        </ul>
+                        <div class="project-tech">
+                            <span><img src="assets/logos/react.svg" alt="React" class="tech-tag-icon"> React.js</span>
+                            <span><img src="assets/logos/javascript.svg" alt="JS" class="tech-tag-icon"> JavaScript</span>
+                            <span><img src="assets/logos/tailwindcss.svg" alt="Tailwind" class="tech-tag-icon"> Tailwind CSS</span>
+                            <span>REST APIs</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recipe Website Project -->
+                <div class="project-card animate-on-scroll" data-category="fullstack">
+                    <div class="project-image">
+                        <img src="assets/images/img-recipe.jpg" alt="Recipe Website" loading="lazy">
+                        <div class="project-overlay">
+                            <a href="https://github.com/rajwardhan4545/Recipe-Website" target="_blank" rel="noopener" class="project-link" aria-label="Recipe Website GitHub Repo">
+                                <i class="fab fa-github"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="project-body">
+                        <div class="project-meta">
+                            <span class="project-date">Jul 2025</span>
+                        </div>
+                        <h3 class="project-title">Recipe Website</h3>
+                        <p class="project-desc">
+                            A recipe browsing website with a clean, responsive UI for discovering and exploring recipes with step-by-step instructions and ingredients.
+                        </p>
+                        <ul class="project-features">
+                            <li>Clean responsive recipe browsing interface.</li>
+                            <li>Category-based filtering and search.</li>
+                            <li>Step-by-step cooking instructions with ingredient lists.</li>
+                        </ul>
+                        <div class="project-tech">
+                            <span><img src="assets/logos/html5.svg" alt="HTML5" class="tech-tag-icon"> HTML5</span>
+                            <span><img src="assets/logos/css3.svg" alt="CSS3" class="tech-tag-icon"> CSS3</span>
+                            <span><img src="assets/logos/javascript.svg" alt="JS" class="tech-tag-icon"> JavaScript</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Jarvis AI Bot Project -->
+                <div class="project-card animate-on-scroll" data-category="ai">
+                    <div class="project-image">
+                        <img src="assets/images/img-jarvis.jpg" alt="Jarvis AI Bot" loading="lazy">
+                        <div class="project-overlay">
+                            <a href="https://github.com/rajwardhan4545/Jarvis_AI_bot" target="_blank" rel="noopener" class="project-link" aria-label="Jarvis AI GitHub Repo">
+                                <i class="fab fa-github"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="project-body">
+                        <div class="project-meta">
+                            <span class="project-date">Feb 2024</span>
+                        </div>
+                        <h3 class="project-title">Jarvis AI Bot</h3>
+                        <p class="project-desc">
+                            A Python-based AI assistant inspired by Jarvis from Iron Man, capable of voice interaction, web searches, and task automation.
+                        </p>
+                        <ul class="project-features">
+                            <li>Voice-controlled AI assistant with speech recognition.</li>
+                            <li>Automated web searches and system task execution.</li>
+                            <li>Interactive conversational interface.</li>
+                        </ul>
+                        <div class="project-tech">
+                            <span><img src="assets/logos/python.svg" alt="Python" class="tech-tag-icon"> Python</span>
+                            <span>Speech Recognition</span>
+                            <span>pyttsx3</span>
+                            <span>APIs</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Gold-Graphene PCF SPR Sensor Project -->
+                <div class="project-card animate-on-scroll" data-category="research">
+                    <div class="project-image">
+                        <img src="assets/images/img-sensor.jpg" alt="Gold-Graphene PCF SPR Sensor" loading="lazy">
+                        <div class="project-overlay">
+                            <a href="https://github.com/rajwardhan4545/-Gold-Graphene-Coated-PCF-SPR-Sensor" target="_blank" rel="noopener" class="project-link" aria-label="Sensor Project GitHub Repo">
+                                <i class="fab fa-github"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="project-body">
+                        <div class="project-meta">
+                            <span class="project-date">Nov 2025</span>
+                        </div>
+                        <h3 class="project-title">Gold-Graphene PCF SPR Sensor</h3>
+                        <p class="project-desc">
+                            Developed an SPR sensor with gold and graphene coating on Photonic Crystal Fiber for improved sensitivity. Achieved wavelength sensitivity of 12,000 nm/RIU using COMSOL simulations.
+                        </p>
+                        <ul class="project-features">
+                            <li>Optimized design parameters (hole diameter pitch metal layer thickness) via COMSOL.</li>
+                            <li>Achieved amplitude sensitivity of -1077.83 RIU⁻¹.</li>
+                            <li>Research-grade photonic sensor simulation and analysis.</li>
+                        </ul>
+                        <div class="project-tech">
+                            <span>COMSOL</span>
+                            <span>MATLAB</span>
+                            <span>Photonics</span>
+                            <span>PCF Design</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section class="section education" id="education">
+        <div class="container">
+            <div class="section-header animate-on-scroll">
+                <span class="section-tag">04</span>
+                <h2 class="section-title">Education</h2>
+                <div class="section-line"></div>
+            </div>
+
+            <div class="edu-grid">
+                <!-- NITK -->
+                <div class="edu-card edu-featured animate-on-scroll">
+                    <div class="edu-accent"></div>
+                    <div class="edu-featured-body">
+                        <div class="edu-featured-info">
+                            <div class="edu-header-row">
+                                <div class="edu-icon-wrap">
+                                    <i class="fas fa-university"></i>
+                                </div>
+                                <span class="edu-subtle-tag"><i class="fas fa-landmark"></i> Institute of National Importance</span>
+                            </div>
+                            <h3>National Institute of Technology Karnataka, Surathkal</h3>
+                            <p class="edu-degree">B.Tech in Electronics &amp; Communication Engineering</p>
+                            <div class="edu-meta">
+                                <span><i class="far fa-calendar-alt"></i> 2021 — 2025</span>
+                                <span><i class="fas fa-chart-line"></i> CGPA: 6.85</span>
+                                <span><i class="fas fa-map-marker-alt"></i> Surathkal, Karnataka</span>
+                            </div>
+                            <p class="edu-desc">
+                                Four-year undergraduate engineering program with extensive coursework in core electronics, 
+                                signal processing, embedded systems, microcontrollers, and software systems engineering.
+                            </p>
+                            <div class="edu-coursework">
+                                <span>Embedded Systems</span>
+                                <span>Signal Processing</span>
+                                <span>Data Structures</span>
+                                <span>Computer Networks</span>
+                            </div>
+                        </div>
+                        <div class="edu-featured-media">
+                            <img src="assets/images/img-nitk.jpg" alt="NITK Surathkal Campus" class="edu-campus-img">
+                            <div class="edu-media-overlay">
+                                <span>NITK Surathkal</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- C-DAC -->
+                <div class="edu-card animate-on-scroll">
+                    <div class="edu-accent cdac"></div>
+                    <div class="edu-icon-wrap cdac">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <h3>Centre for Development of Advanced Computing (C-DAC)</h3>
+                    <p class="edu-degree">PG Diploma in Advanced Computing (PG-DAC)</p>
+                    <div class="edu-meta">
+                        <span><i class="far fa-calendar-alt"></i> 2025 — 2026</span>
+                        <span><i class="fas fa-chart-line"></i> 84.6%</span>
+                    </div>
+                    <p class="edu-desc">
+                        Intensive post-graduate program covering advanced software engineering, 
+                        Java/J2EE, .NET, database technologies, and web development frameworks.
+                    </p>
+                </div>
+
+                <!-- HSC -->
+                <div class="edu-card animate-on-scroll">
+                    <div class="edu-accent hsc"></div>
+                    <div class="edu-icon-wrap hsc">
+                        <i class="fas fa-school"></i>
+                    </div>
+                    <h3>Vyankatrao High School &amp; Junior College</h3>
+                    <p class="edu-degree">Higher Secondary Education — Ichalkaranji</p>
+                    <div class="edu-meta">
+                        <span><i class="far fa-calendar-alt"></i> 2019 — 2021</span>
+                        <span><i class="fas fa-chart-line"></i> 91.0%</span>
+                    </div>
+                </div>
+
+                <!-- SSC -->
+                <div class="edu-card animate-on-scroll">
+                    <div class="edu-accent ssc"></div>
+                    <div class="edu-icon-wrap ssc">
+                        <i class="fas fa-book-reader"></i>
+                    </div>
+                    <h3>SOU. S. M. Lohiya High School</h3>
+                    <p class="edu-degree">Secondary Education — Kolhapur</p>
+                    <div class="edu-meta">
+                        <span><i class="far fa-calendar-alt"></i> 2017 — 2019</span>
+                        <span><i class="fas fa-chart-line"></i> 90.0%</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section class="section skills" id="skills">
+        <div class="aurora-beam" style="animation-delay: 1.5s;"></div>
+        <div class="skills-dot-grid"></div>
+        <div class="container">
+            <div class="section-header animate-on-scroll">
+                <span class="section-tag">05</span>
+                <h2 class="section-title">Technical Skills</h2>
+                <div class="section-line"></div>
+            </div>
+
+            <div class="skills-grid">
+                <div class="skill-category animate-on-scroll">
+                    <div class="skill-cat-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3>Programming</h3>
+                    <div class="skill-pills">
+                        <span class="skill-pill"><img src="assets/logos/java.svg" alt="Java" class="skill-logo"> Java</span>
+                        <span class="skill-pill"><img src="assets/logos/cplusplus.svg" alt="C++" class="skill-logo"> C++</span>
+                        <span class="skill-pill"><img src="assets/logos/csharp.svg" alt="C#" class="skill-logo"> C#</span>
+                        <span class="skill-pill"><img src="assets/logos/kotlin.svg" alt="Kotlin" class="skill-logo"> Kotlin</span>
+                        <span class="skill-pill"><img src="assets/logos/python.svg" alt="Python" class="skill-logo"> Python</span>
+                        <span class="skill-pill"><img src="assets/logos/mysql.svg" alt="SQL" class="skill-logo"> SQL</span>
+                        <span class="skill-pill"><i class="fas fa-cubes skill-logo-fa"></i> Data Structures</span>
+                        <span class="skill-pill"><i class="fas fa-project-diagram skill-logo-fa"></i> Algorithms</span>
+                    </div>
+                </div>
+
+                <div class="skill-category animate-on-scroll">
+                    <div class="skill-cat-icon">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <h3>Web &amp; Frontend</h3>
+                    <div class="skill-pills">
+                        <span class="skill-pill"><img src="assets/logos/react.svg" alt="React" class="skill-logo"> React JS</span>
+                        <span class="skill-pill"><img src="assets/logos/javascript.svg" alt="JavaScript" class="skill-logo"> JavaScript</span>
+                        <span class="skill-pill"><img src="assets/logos/html5.svg" alt="HTML5" class="skill-logo"> HTML5</span>
+                        <span class="skill-pill"><img src="assets/logos/css3.svg" alt="CSS3" class="skill-logo"> CSS3</span>
+                        <span class="skill-pill"><img src="assets/logos/tailwindcss.svg" alt="Tailwind" class="skill-logo"> Tailwind CSS</span>
+                        <span class="skill-pill"><img src="assets/logos/nodejs.svg" alt="Node" class="skill-logo"> Node JS</span>
+                        <span class="skill-pill"><img src="assets/logos/git.svg" alt="Git" class="skill-logo"> Git</span>
+                        <span class="skill-pill"><img src="assets/logos/github.svg" alt="GitHub" class="skill-logo"> GitHub</span>
+                    </div>
+                </div>
+
+                <div class="skill-category animate-on-scroll">
+                    <div class="skill-cat-icon">
+                        <i class="fas fa-server"></i>
+                    </div>
+                    <h3>Backend &amp; Cloud</h3>
+                    <div class="skill-pills">
+                        <span class="skill-pill"><img src="assets/logos/spring.svg" alt="Spring" class="skill-logo"> Spring Boot</span>
+                        <span class="skill-pill"><img src="assets/logos/dot-net.svg" alt=".NET" class="skill-logo"> .NET Core</span>
+                        <span class="skill-pill"><img src="assets/logos/mysql.svg" alt="MySQL" class="skill-logo"> MySQL</span>
+                        <span class="skill-pill"><img src="assets/logos/docker.svg" alt="Docker" class="skill-logo"> Docker</span>
+                        <span class="skill-pill"><i class="fas fa-network-wired skill-logo-fa"></i> REST APIs</span>
+                        <span class="skill-pill"><i class="fas fa-shield-alt skill-logo-fa"></i> JWT Security</span>
+                    </div>
+                </div>
+
+                <div class="skill-category animate-on-scroll">
+                    <div class="skill-cat-icon">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <h3>Software Engineering &amp; OS</h3>
+                    <div class="skill-pills">
+                        <span class="skill-pill"><img src="assets/logos/android.svg" alt="Android" class="skill-logo"> Android Native</span>
+                        <span class="skill-pill"><img src="assets/logos/linux.svg" alt="Linux" class="skill-logo"> Linux / OS</span>
+                        <span class="skill-pill"><i class="fas fa-sitemap skill-logo-fa"></i> SDUI Architecture</span>
+                        <span class="skill-pill"><i class="fas fa-code-branch skill-logo-fa"></i> CI/CD &amp; Git Flow</span>
+                        <span class="skill-pill"><i class="fas fa-layer-group skill-logo-fa"></i> OOP &amp; Clean Code</span>
+                        <span class="skill-pill"><i class="fas fa-tasks skill-logo-fa"></i> Agile &amp; Scrum</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section contact" id="contact">
+        <div class="container">
+            <div class="section-header animate-on-scroll">
+                <span class="section-tag">06</span>
+                <h2 class="section-title">Get In Touch</h2>
+                <div class="section-line"></div>
+            </div>
+
+            <div class="contact-grid">
+                <div class="contact-text animate-on-scroll">
+                    <p class="contact-lead">
+                        I'm always open to discussing new opportunities, interesting projects, 
+                        or just connecting over tech. Feel free to reach out!
+                    </p>
+                    <div class="contact-cards">
+                        <a href="mailto:rajwardhanpatil2003@gmail.com" class="contact-card">
+                            <div class="contact-card-icon"><i class="fas fa-envelope"></i></div>
+                            <div>
+                                <h4>Email</h4>
+                                <span>rajwardhanpatil2003@gmail.com</span>
+                            </div>
+                        </a>
+                        <a href="tel:+919673454532" class="contact-card">
+                            <div class="contact-card-icon"><i class="fas fa-phone"></i></div>
+                            <div>
+                                <h4>Phone</h4>
+                                <span>+91-9673454532</span>
+                            </div>
+                        </a>
+                        <a href="https://github.com/rajwardhan4545" target="_blank" rel="noopener" class="contact-card">
+                            <div class="contact-card-icon"><i class="fab fa-github"></i></div>
+                            <div>
+                                <h4>GitHub</h4>
+                                <span>github.com/rajwardhan4545</span>
+                            </div>
+                        </a>
+                        <a href="https://www.linkedin.com/in/rajwardhan4545" target="_blank" rel="noopener" class="contact-card">
+                            <div class="contact-card-icon"><i class="fab fa-linkedin-in"></i></div>
+                            <div>
+                                <h4>LinkedIn</h4>
+                                <span>linkedin.com/in/rajwardhan4545</span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="contact-form-wrap animate-on-scroll">
+                    <form class="contact-form" id="contactForm" action="https://formspree.io/f/xdkoznpb" method="POST">
+                        <input type="hidden" name="_subject" value="New message from portfolio!">
+                        <div class="form-group">
+                            <input type="text" id="formName" name="name" placeholder=" " required>
+                            <label for="formName">Your Name</label>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" id="formEmail" name="email" placeholder=" " required>
+                            <label for="formEmail">Your Email</label>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" id="formSubject" name="subject" placeholder=" ">
+                            <label for="formSubject">Subject</label>
+                        </div>
+                        <div class="form-group">
+                            <textarea id="formMessage" name="message" rows="5" placeholder=" " required></textarea>
+                            <label for="formMessage">Message</label>
+                        </div>
+                        <div id="formStatus" class="form-status" style="display:none;"></div>
+                        <button type="submit" class="btn btn-primary btn-full" id="formSubmitBtn">
+                            <span>Send Message</span>
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-inner">
+                <div class="footer-brand">
+                    <span class="footer-logo">RP<span class="logo-dot">.</span></span>
+                    <p>Designed &amp; built by Rajwardhan Patil</p>
+                </div>
+                <div class="footer-links">
+                    <a href="https://github.com/rajwardhan4545" target="_blank" rel="noopener"><i class="fab fa-github"></i></a>
+                    <a href="https://www.linkedin.com/in/rajwardhan4545" target="_blank" rel="noopener"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="mailto:rajwardhanpatil2003@gmail.com"><i class="fas fa-envelope"></i></a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Rajwardhan Patil. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
