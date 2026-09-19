@@ -556,40 +556,94 @@ document.addEventListener('DOMContentLoaded', () => {
             const statusEl = document.getElementById('formStatus');
             const originalHTML = btn.innerHTML;
 
+            const nameInput = document.getElementById('formName');
+            const emailInput = document.getElementById('formEmail');
+            const subjectInput = document.getElementById('formSubject');
+            const messageInput = document.getElementById('formMessage');
+
+            const nameVal = nameInput ? nameInput.value.trim() : '';
+            const emailVal = emailInput ? emailInput.value.trim() : '';
+            const subjectVal = (subjectInput && subjectInput.value.trim()) ? subjectInput.value.trim() : `Portfolio Message from ${nameVal || 'Visitor'}`;
+            const messageVal = messageInput ? messageInput.value.trim() : '';
+
+            if (!nameVal || !emailVal || !messageVal) {
+                statusEl.className = 'form-status error';
+                statusEl.textContent = 'Please fill out all required fields.';
+                statusEl.style.display = 'block';
+                return;
+            }
+
             // Loading state
             btn.disabled = true;
             btn.innerHTML = '<span>Sending...</span><i class="fas fa-spinner fa-spin"></i>';
 
+            let sentSuccessfully = false;
+
             try {
-                const formData = new FormData(contactForm);
-                const response = await fetch(contactForm.action, {
+                const response = await fetch('https://formsubmit.co/ajax/rajwardhanpatil2003@gmail.com', {
                     method: 'POST',
-                    body: formData,
-                    headers: { 'Accept': 'application/json' }
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        name: nameVal,
+                        email: emailVal,
+                        subject: subjectVal,
+                        message: messageVal,
+                        _captcha: 'false',
+                        _template: 'table'
+                    })
                 });
 
                 if (response.ok) {
-                    statusEl.className = 'form-status success';
-                    statusEl.textContent = '✅ Message sent! I\'ll get back to you soon.';
-                    statusEl.style.display = 'block';
-                    contactForm.reset();
-                    btn.innerHTML = '<span>Message Sent!</span><i class="fas fa-check"></i>';
-                    btn.style.background = 'linear-gradient(135deg, #10b981, #059669)';
-                    setTimeout(() => {
-                        btn.innerHTML = originalHTML;
-                        btn.style.background = '';
-                        btn.disabled = false;
-                        setTimeout(() => { statusEl.style.display = 'none'; }, 500);
-                    }, 4000);
-                } else {
-                    throw new Error('Server error');
+                    const data = await response.json().catch(() => ({}));
+                    if (data.success === 'true' || data.success === true || response.status === 200) {
+                        sentSuccessfully = true;
+                    }
                 }
             } catch (err) {
-                statusEl.className = 'form-status error';
-                statusEl.textContent = '❌ Oops! Something went wrong. Try emailing me directly.';
+                console.warn('Direct API submission encountered network/adblocker constraint:', err);
+            }
+
+            if (sentSuccessfully) {
+                statusEl.className = 'form-status success';
+                statusEl.textContent = '✅ Message sent! I\'ll get back to you soon.';
+                statusEl.style.display = 'block';
+                contactForm.reset();
+                btn.innerHTML = '<span>Message Sent!</span><i class="fas fa-check"></i>';
+                btn.style.background = 'linear-gradient(135deg, #10b981, #059669)';
+                setTimeout(() => {
+                    btn.innerHTML = originalHTML;
+                    btn.style.background = '';
+                    btn.disabled = false;
+                    setTimeout(() => { statusEl.style.display = 'none'; }, 4000);
+                }, 4000);
+            } else {
+                // If API was blocked or pending verification, provide instant 1-click delivery via Gmail or Default Mail
+                const encSubject = encodeURIComponent(subjectVal);
+                const encBody = encodeURIComponent(`Hi Rajwardhan,\n\n${messageVal}\n\nFrom: ${nameVal} (${emailVal})`);
+                const mailtoUrl = `mailto:rajwardhanpatil2003@gmail.com?subject=${encSubject}&body=${encBody}`;
+                const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=rajwardhanpatil2003@gmail.com&su=${encSubject}&body=${encBody}`;
+
+                statusEl.className = 'form-status warning';
+                statusEl.innerHTML = `
+                    <div style="margin-bottom: 0.6rem;">Please choose your preferred email to send directly:</div>
+                    <div style="display: flex; gap: 0.6rem; justify-content: center; flex-wrap: wrap;">
+                        <a href="${gmailUrl}" target="_blank" rel="noopener" class="btn btn-primary" style="font-size: 0.82rem; padding: 0.45rem 0.9rem; border-radius: 6px;">
+                            <i class="fab fa-google"></i> Open in Gmail
+                        </a>
+                        <a href="${mailtoUrl}" class="btn" style="font-size: 0.82rem; padding: 0.45rem 0.9rem; border-radius: 6px; background: rgba(255,255,255,0.1); border: 1px solid var(--border);">
+                            <i class="fas fa-envelope"></i> Default Mail App
+                        </a>
+                    </div>
+                `;
                 statusEl.style.display = 'block';
                 btn.innerHTML = originalHTML;
                 btn.disabled = false;
+
+                // Also trigger mail client
+                window.location.href = mailtoUrl;
             }
         });
     }
