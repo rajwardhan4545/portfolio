@@ -378,8 +378,9 @@ document.addEventListener('DOMContentLoaded', () => {
             btn.classList.add('active');
 
             const filterValue = btn.getAttribute('data-filter');
+            const allCards = document.querySelectorAll('.project-card');
 
-            projectCards.forEach((card, index) => {
+            allCards.forEach((card, index) => {
                 const category = card.getAttribute('data-category');
                 const shouldShow = filterValue === 'all' || category === filterValue;
 
@@ -399,6 +400,12 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     });
+
+    function updateProjectFilterCount() {
+        const total = document.querySelectorAll('.project-card').length;
+        const countEl = document.querySelector('.filter-count');
+        if (countEl) countEl.textContent = total;
+    }
 
 
     // ============================================
@@ -511,29 +518,29 @@ document.addEventListener('DOMContentLoaded', () => {
     // ============================================
     // 11. 3D TILT EFFECT ON CARDS
     // ============================================
-    const tiltCards = document.querySelectorAll('.project-card, .highlight-card, .skill-category, .edu-card');
-    
-    if (window.matchMedia('(pointer: fine)').matches) {
-        tiltCards.forEach(card => {
-            card.addEventListener('mousemove', (e) => {
-                const rect = card.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-                
-                const centerX = rect.width / 2;
-                const centerY = rect.height / 2;
-                
-                const rotateX = ((y - centerY) / centerY) * -4;
-                const rotateY = ((x - centerX) / centerX) * 4;
+    function addTiltEffect(card) {
+        if (!window.matchMedia('(pointer: fine)').matches) return;
+        card.addEventListener('mousemove', (e) => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+            
+            const rotateX = ((y - centerY) / centerY) * -4;
+            const rotateY = ((x - centerX) / centerX) * 4;
 
-                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-4px)`;
-            });
+            card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-4px)`;
+        });
 
-            card.addEventListener('mouseleave', () => {
-                card.style.transform = '';
-            });
+        card.addEventListener('mouseleave', () => {
+            card.style.transform = '';
         });
     }
+
+    const tiltCards = document.querySelectorAll('.project-card, .highlight-card, .skill-category, .edu-card');
+    tiltCards.forEach(card => addTiltEffect(card));
 
 
     // ============================================
@@ -754,5 +761,176 @@ document.addEventListener('DOMContentLoaded', () => {
             setTimeout(() => circle.remove(), 600);
         }
     });
+
+    // ============================================
+    // 16. DYNAMIC GITHUB PROJECTS INTEGRATION (Post-ETOUR)
+    // ============================================
+    const GITHUB_USERNAME = 'rajwardhan4545';
+    const ETOUR_CREATED_AT = '2026-08-01T13:45:46Z';
+    const CACHE_KEY = 'portfolio_github_projects_cache_v2';
+    const CACHE_EXPIRY = 15 * 60 * 1000; // 15 mins
+
+    // Repos already hardcoded in index.html to avoid duplicates
+    const EXISTING_REPOS = [
+        'etour-virtuego',
+        'newsmela',
+        'recipe-website',
+        'jarvis_ai_bot',
+        '-gold-graphene-coated-pcf-spr-sensor',
+        'portfolio'
+    ];
+
+    // Fallback data if GitHub API is offline or rate limited
+    const FALLBACK_POST_ETOUR_REPOS = [
+        {
+            name: 'order-inventory-system',
+            description: 'Production-ready Event-Driven Order & Inventory Management Microservices system built with Spring Boot 3.3, Apache Kafka, Netflix Eureka, Spring Cloud Gateway, MySQL, Docker, and Kubernetes implementing the Saga pattern.',
+            language: 'Java',
+            html_url: 'https://github.com/rajwardhan4545/order-inventory-system',
+            created_at: '2026-08-31T17:38:22Z'
+        },
+        {
+            name: 'ai-job-hunter',
+            description: 'AI-assisted job discovery, web scraping, and application tracking automation tool engineered in TypeScript to streamline tech job searches.',
+            language: 'TypeScript',
+            html_url: 'https://github.com/rajwardhan4545/ai-job-hunter',
+            created_at: '2026-09-15T04:31:17Z'
+        }
+    ];
+
+    function formatTitle(name) {
+        if (name.toLowerCase() === 'order-inventory-system') {
+            return 'Order & Inventory Microservices';
+        }
+        if (name.toLowerCase() === 'ai-job-hunter') {
+            return 'AI Job Hunter & Scraper';
+        }
+        return name
+            .replace(/[-_]+/g, ' ')
+            .replace(/\b\w/g, c => c.toUpperCase())
+            .replace(/\bAi\b/i, 'AI')
+            .replace(/\bApi\b/i, 'API')
+            .replace(/\bSdui\b/i, 'SDUI');
+    }
+
+    function determineCategory(name, desc) {
+        const text = (name + ' ' + (desc || '')).toLowerCase();
+        if (text.includes('ai') || text.includes('bot') || text.includes('gpt') || text.includes('hunter') || text.includes('nlp') || text.includes('scrape')) {
+            return 'ai';
+        }
+        if (text.includes('sensor') || text.includes('iot') || text.includes('hardware') || text.includes('research') || text.includes('matlab')) {
+            return 'research';
+        }
+        return 'fullstack';
+    }
+
+    function determineImage(category, name) {
+        if (category === 'ai') return 'assets/images/dev-coding.jpg';
+        if (name.includes('order') || name.includes('microservice')) return 'assets/images/bg-code-dark.jpg';
+        return 'assets/images/dev-workspace.jpg';
+    }
+
+    function getTechTags(repo) {
+        const text = (repo.name + ' ' + (repo.description || '') + ' ' + (repo.language || '')).toLowerCase();
+        let tags = [];
+
+        if (text.includes('java')) tags.push('<span><img src="assets/logos/java.svg" alt="Java" class="tech-tag-icon"> Java</span>');
+        if (text.includes('spring')) tags.push('<span><img src="assets/logos/spring.svg" alt="Spring" class="tech-tag-icon"> Spring Boot</span>');
+        if (text.includes('kafka')) tags.push('<span>Apache Kafka</span>');
+        if (text.includes('docker')) tags.push('<span><img src="assets/logos/docker.svg" alt="Docker" class="tech-tag-icon"> Docker</span>');
+        if (text.includes('kubernetes')) tags.push('<span>Kubernetes</span>');
+        if (text.includes('mysql')) tags.push('<span><img src="assets/logos/mysql.svg" alt="MySQL" class="tech-tag-icon"> MySQL</span>');
+        if (text.includes('typescript')) tags.push('<span>TypeScript</span>');
+        if (text.includes('react')) tags.push('<span><img src="assets/logos/react.svg" alt="React" class="tech-tag-icon"> React.js</span>');
+        if (text.includes('python')) tags.push('<span><img src="assets/logos/python.svg" alt="Python" class="tech-tag-icon"> Python</span>');
+        if (text.includes('node')) tags.push('<span><img src="assets/logos/nodejs.svg" alt="Node" class="tech-tag-icon"> Node.js</span>');
+        
+        if (tags.length === 0 && repo.language) {
+            tags.push(`<span>${repo.language}</span>`);
+        }
+        tags.push('<span><img src="assets/logos/github.svg" alt="GitHub" class="tech-tag-icon"> GitHub</span>');
+        return tags.join(' ');
+    }
+
+    async function loadGitHubProjects() {
+        const grid = document.getElementById('projectsGrid');
+        if (!grid) return;
+
+        let repos = [];
+
+        try {
+            const cached = localStorage.getItem(CACHE_KEY);
+            const cachedTime = localStorage.getItem(CACHE_KEY + '_time');
+
+            if (cached && cachedTime && (Date.now() - Number(cachedTime) < CACHE_EXPIRY)) {
+                repos = JSON.parse(cached);
+            } else {
+                const res = await fetch(`https://api.github.com/users/${GITHUB_USERNAME}/repos?sort=created&direction=asc&per_page=100`);
+                if (!res.ok) throw new Error(`HTTP ${res.status}`);
+                repos = await res.json();
+                localStorage.setItem(CACHE_KEY, JSON.stringify(repos));
+                localStorage.setItem(CACHE_KEY + '_time', Date.now().toString());
+            }
+
+            const etourTime = new Date(ETOUR_CREATED_AT).getTime();
+
+            // Filter for projects created >= ETOUR, not forks, not portfolio, and not already in HTML
+            repos = repos.filter(r => {
+                const isAfter = new Date(r.created_at).getTime() >= etourTime;
+                const isNotExisting = !EXISTING_REPOS.includes(r.name.toLowerCase());
+                return isAfter && !r.fork && isNotExisting;
+            });
+        } catch (err) {
+            console.warn('GitHub API offline / rate limited, using verified post-ETOUR projects:', err);
+            repos = FALLBACK_POST_ETOUR_REPOS;
+        }
+
+        repos.forEach(repo => {
+            const category = determineCategory(repo.name, repo.description);
+            const title = formatTitle(repo.name);
+            const image = determineImage(category, repo.name);
+            const desc = repo.description || 'Open-source software project built by Rajwardhan. Check GitHub for source code and architecture documentation.';
+            const dateStr = new Date(repo.created_at).toLocaleDateString('en-US', { month: 'short', year: 'numeric' });
+            const techHtml = getTechTags(repo);
+
+            const card = document.createElement('div');
+            card.className = 'project-card animate-on-scroll visible';
+            card.setAttribute('data-category', category);
+            card.innerHTML = `
+                <div class="project-image">
+                    <img src="${image}" alt="${title}" loading="lazy">
+                    <div class="project-overlay">
+                        <a href="${repo.html_url}" target="_blank" rel="noopener" class="project-link" aria-label="${title} GitHub Repo">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        ${repo.homepage ? `
+                        <a href="${repo.homepage}" target="_blank" rel="noopener" class="project-link" aria-label="${title} Live Demo" style="margin-left: 0.5rem;">
+                            <i class="fas fa-external-link-alt"></i>
+                        </a>` : ''}
+                    </div>
+                </div>
+                <div class="project-body">
+                    <div class="project-meta">
+                        <span class="project-date">${dateStr}</span>
+                    </div>
+                    <h3 class="project-title">${title}</h3>
+                    <p class="project-desc">${desc}</p>
+                    <div class="project-tech">
+                        ${techHtml}
+                    </div>
+                </div>
+            `;
+
+            grid.appendChild(card);
+            if (typeof observer !== 'undefined' && observer && observer.observe) {
+                observer.observe(card);
+            }
+            addTiltEffect(card);
+        });
+
+        updateProjectFilterCount();
+    }
+
+    loadGitHubProjects();
 
 });
